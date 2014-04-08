@@ -67,7 +67,7 @@ namespace gd
 		}
 	};
 
-	gdImagePtr loadImage(int size, void* data)
+	BGDEX_DECLARE_CC(gdImagePtr) loadImage(int size, void* data)
 	{
 #ifdef WIN32
 #define CALLTYPE _stdcall
@@ -90,7 +90,7 @@ namespace gd
 		return nullptr;
 	}
 
-	gdImagePtr loadImage(const std::string& path)
+	BGDEX_DECLARE_CC(gdImagePtr) loadImage(const std::string& path)
 	{
 
 		File f{ fopen(path.c_str(), "rb") };

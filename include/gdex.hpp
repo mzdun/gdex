@@ -28,6 +28,24 @@
 #include <gd.h>
 #include <string>
 #include <map>
+#include <stdint.h>
+#include <vector>
+
+#ifndef WIN32
+#define NONDLL 1
+#endif /* WIN32 */
+
+#ifdef NONDLL
+#define BGDEX_DECLARE_CC(rt) extern rt
+#else
+#ifdef BGDEXWIN32
+#define BGDEX_DECLARE_CC(rt) __declspec(dllexport) rt __stdcall
+#else
+#define BGDEX_DECLARE_CC(rt) __declspec(dllimport) rt _stdcall
+#endif /* BGDWIN32 */
+#endif /* NONDLL */
+
+#define BGDEX_DECLARE(rt) extern "C" BGDEX_DECLARE_CC(rt)
 
 namespace gd
 {
@@ -132,8 +150,42 @@ namespace gd
 		}
 	};
 
-	gdImagePtr loadImage(int size, void* data);
-	gdImagePtr loadImage(const std::string& path);
+	BGDEX_DECLARE_CC(gdImagePtr) loadImage(int size, void* data);
+	BGDEX_DECLARE_CC(gdImagePtr) loadImage(const std::string& path);
+
+	namespace ico
+	{
+		enum class COMPRESSION
+		{
+			RGB,
+			ARGB,
+			ZRGB, // RGB32 with 4th channel all zeroed-out
+			PNG
+		};
+
+		struct IconEntry
+		{
+			uint16_t width;
+			uint16_t height;
+			uint16_t bpp;
+			COMPRESSION compression;
+			uint32_t size;
+			uint32_t offset;
+		};
+		using IconDirectory = std::vector<IconEntry>;
+	}
 };
+
+BGDEX_DECLARE(gdImagePtr) gdImageCreateFromIcon(FILE * infile, int iconSize);
+BGDEX_DECLARE(gdImagePtr) gdImageCreateFromIconCtx(gdIOCtx * infile, int iconSize);
+BGDEX_DECLARE(gdImagePtr) gdImageCreateFromIconPtr(int size, void *data, int iconSize);
+
+BGDEX_DECLARE(bool) gdImageLoadIconDirectory(FILE * infile, gd::ico::IconDirectory& out);
+BGDEX_DECLARE(bool) gdImageLoadIconDirectoryCtx(gdIOCtx * infile, gd::ico::IconDirectory& out);
+BGDEX_DECLARE(bool) gdImageLoadIconDirectoryPtr(int size, void *data, gd::ico::IconDirectory& out);
+
+BGDEX_DECLARE(gdImagePtr) gdImageLoadIconEntry(FILE * infile, const gd::ico::IconEntry& entry);
+BGDEX_DECLARE(gdImagePtr) gdImageLoadIconEntryCtx(gdIOCtx * infile, const gd::ico::IconEntry& entry);
+BGDEX_DECLARE(gdImagePtr) gdImageLoadIconEntryPtr(int size, void *data, const gd::ico::IconEntry& entry);
 
 #endif // __GDEX_HPP__

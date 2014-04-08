@@ -2,8 +2,16 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <_PropertySheetDisplayName>GdEx Settings</_PropertySheetDisplayName>
-    <IncludePath>$(SolutionDir)\..\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)..\include;$(SolutionDir)..\src;$(IncludePath)</IncludePath>
   </PropertyGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <PreprocessorDefinitions>BGDEXWIN32;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="3rdparty-inc.props" />
+  </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <ItemGroup />
 </Project>

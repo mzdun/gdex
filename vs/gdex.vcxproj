@@ -12,6 +12,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\gdex.hpp" />
+    <ClInclude Include="..\include\gdex_io.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\src\ico\gd_ico.cpp" />
+    <ClCompile Include="..\src\load_image.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{C6014D10-C635-44A7-ADFC-0971DC976197}</ProjectGuid>
@@ -20,7 +25,7 @@
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
     <PlatformToolset>CTP_Nov2013</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>

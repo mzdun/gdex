@@ -4,6 +4,14 @@
     <_PropertySheetDisplayName>Test Settings</_PropertySheetDisplayName>
     <IncludePath>$(SolutionDir)\..\test\gtest\include;$(SolutionDir)\..\test\gtest;$(IncludePath)</IncludePath>
   </PropertyGroup>
+  <ItemDefinitionGroup>
+    <Link>
+      <AdditionalDependencies>gdex.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="3rdparty-inc.props" />
+  </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <ItemGroup />
 </Project>
