@@ -10,6 +10,9 @@
       <Platform>Win32</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\include\gdex.hpp" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{C6014D10-C635-44A7-ADFC-0971DC976197}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>

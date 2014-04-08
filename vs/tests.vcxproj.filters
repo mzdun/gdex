@@ -16,6 +16,9 @@
     <Filter Include="Source Files\gtest">
       <UniqueIdentifier>{921ae31e-d6c1-43cf-a7c3-77ee35855a42}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\gtest">
+      <UniqueIdentifier>{df7937b4-0149-455d-afab-d23cf0164637}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\test\gtest\src\gtest-all.cc">
@@ -24,5 +27,37 @@
     <ClCompile Include="..\test\gtest\src\gtest_main.cc">
       <Filter>Source Files\gtest</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\test\gtest\include\gtest\gtest.h">
+      <Filter>Header Files\gtest</Filter>
+    </ClInclude>
+    <ClInclude Include="..\test\gtest\include\gtest\gtest_pred_impl.h">
+      <Filter>Header Files\gtest</Filter>
+    </ClInclude>
+    <ClInclude Include="..\test\gtest\include\gtest\gtest_prod.h">
+      <Filter>Header Files\gtest</Filter>
+    </ClInclude>
+    <ClInclude Include="..\test\gtest\include\gtest\gtest-death-test.h">
+      <Filter>Header Files\gtest</Filter>
+    </ClInclude>
+    <ClInclude Include="..\test\gtest\include\gtest\gtest-message.h">
+      <Filter>Header Files\gtest</Filter>
+    </ClInclude>
+    <ClInclude Include="..\test\gtest\include\gtest\gtest-param-test.h">
+      <Filter>Header Files\gtest</Filter>
+    </ClInclude>
+    <ClInclude Include="..\test\gtest\include\gtest\gtest-printers.h">
+      <Filter>Header Files\gtest</Filter>
+    </ClInclude>
+    <ClInclude Include="..\test\gtest\include\gtest\gtest-spi.h">
+      <Filter>Header Files\gtest</Filter>
+    </ClInclude>
+    <ClInclude Include="..\test\gtest\include\gtest\gtest-test-part.h">
+      <Filter>Header Files\gtest</Filter>
+    </ClInclude>
+    <ClInclude Include="..\test\gtest\include\gtest\gtest-typed-test.h">
+      <Filter>Header Files\gtest</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
