@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\test\gtest\src\gtest-all.cc" />
+    <ClCompile Include="..\test\gtest\src\gtest_main.cc" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{6A9A438D-CE44-4378-85C1-2BD1FE7AFDCD}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>tests</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>CTP_Nov2013</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration))'=='Debug'" Label="Configuration">
+    <UseDebugLibraries>true</UseDebugLibraries>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)'=='Release'" Label="Configuration">
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(SolutionDir)\$(Platform).props" Condition="exists('$(SolutionDir)\$(Platform).props')" />
+    <Import Project="$(SolutionDir)\$(Configuration).props" Condition="exists('$(SolutionDir)\$(Configuration).props')" />
+    <Import Project="$(SolutionDir)\$(Platform).$(Configuration).props" Condition="exists('$(SolutionDir)\$(Platform).$(Configuration).props')" />
+    <Import Project="$(SolutionDir)\solution.props" Condition="exists('$(SolutionDir)\solution.props')" />
+    <Import Project="$(SolutionDir)\solution.$(Platform).props" Condition="exists('$(SolutionDir)\solution.$(Platform).props')" />
+    <Import Project="$(SolutionDir)\solution.$(Configuration).props" Condition="exists('$(SolutionDir)\solution.$(Configuration).props')" />
+    <Import Project="$(SolutionDir)\solution.$(Platform).$(Configuration).props" Condition="exists('$(SolutionDir)\solution.$(Platform).$(Configuration).props')" />
+    <Import Project="$(SolutionDir)\tests.props" Condition="exists('$(SolutionDir)\tests.props')" />
+    <Import Project="$(SolutionDir)\tests.$(Platform).props" Condition="exists('$(SolutionDir)\tests.$(Platform).props')" />
+    <Import Project="$(SolutionDir)\tests.$(Configuration).props" Condition="exists('$(SolutionDir)\tests.$(Configuration).props')" />
+    <Import Project="$(SolutionDir)\tests.$(Platform).$(Configuration).props" Condition="exists('$(SolutionDir)\tests.$(Platform).$(Configuration).props')" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
