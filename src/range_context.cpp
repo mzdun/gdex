@@ -32,22 +32,62 @@ namespace gd
 		IOHandle inner;
 		size_t offset;
 		size_t size;
+		size_t ptr;
 
 		static RangeContext* _this(gdIOCtx* ctx) { return static_cast<RangeContext*>(ctx); }
 		static const IOHandle& _inner(gdIOCtx* ctx) { return _this(ctx)->inner; }
 
-		static void rangePutchar(gdIOCtx* ctx, int c) { _inner(ctx).putC(c); }
-		static int rangeGetchar(gdIOCtx* ctx) { return _inner(ctx).getC(); }
-		static int rangeGetbuf(gdIOCtx* ctx, void * ptr, int size) { return _inner(ctx).getBuf(ptr, size); }
-		static int rangePutbuf(gdIOCtx* ctx, const void * ptr, int size) { return _inner(ctx).putBuf(ptr, size); }
+		static void rangePutchar(gdIOCtx* ctx, int c)
+		{
+			if (_this(ctx)->ptr < _this(ctx)->size)
+			{
+				++_this(ctx)->ptr;
+				return _inner(ctx).putC(c);
+			}
+		}
+
+		static int rangeGetchar(gdIOCtx* ctx)
+		{
+			if (_this(ctx)->ptr < _this(ctx)->size)
+			{
+				++_this(ctx)->ptr;
+				return _inner(ctx).getC();
+			}
+			return EOF;
+		}
+
+		static int rangeGetbuf(gdIOCtx* ctx, void * ptr, int size)
+		{
+			auto rest = _this(ctx)->size - _this(ctx)->ptr;
+			if ((size_t)size > rest)
+				size = rest;
+
+			auto read = _inner(ctx).getBuf(ptr, size);
+			_this(ctx)->ptr += read;
+			return read;
+		}
+		static int rangePutbuf(gdIOCtx* ctx, const void * ptr, int size)
+		{
+			auto rest = _this(ctx)->size - _this(ctx)->ptr;
+			if ((size_t)size > rest)
+				size = rest;
+
+			auto written = _inner(ctx).putBuf(ptr, size);
+			_this(ctx)->ptr += written;
+			return written;
+		}
 
 		static int rangeSeek(struct gdIOCtx* ctx, const int offset)
 		{
+			if ((size_t)offset > _this(ctx)->size || offset < 0)
+				return 0;
+
+			_this(ctx)->ptr = offset;
 			return _inner(ctx).seek(offset + _this(ctx)->offset);
 		}
 		static long rangeTell(struct gdIOCtx* ctx)
 		{
-			return _inner(ctx).tell() - _this(ctx)->offset;
+			return _this(ctx)->ptr;
 		}
 		static void gdFreeRangeCtx(gdIOCtx* ctx)
 		{
@@ -72,6 +112,7 @@ namespace gd
 			: inner(inner)
 			, offset(offset)
 			, size(size)
+			, ptr(0)
 		{
 			vtable();
 			seek(this, 0);
