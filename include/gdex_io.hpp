@@ -32,6 +32,7 @@ BGDEX_DECLARE(gdIOCtx *) gdNewRangeCtx(gdIOCtx * inner, size_t offset, size_t si
 
 namespace gd
 {
+	class IOCtx;
 
 	class IOHandle
 	{
@@ -71,6 +72,8 @@ namespace gd
 
 		template <typename T>
 		bool read(T& obj) const { return getBuf(&obj, sizeof(obj)) == sizeof(obj); }
+
+		inline IOCtx createRange(size_t offset, size_t size) const;
 	};
 
 	class IOCtx: public IOHandle
@@ -136,6 +139,11 @@ namespace gd
 			return IOCtx{ gdNewRangeCtx(io.get(), offset, size) };
 		}
 	};
+
+	inline IOCtx IOHandle::createRange(size_t offset, size_t size) const
+	{
+		return IOCtx{ gdNewRangeCtx(ctx, offset, size) };
+	}
 };
 
 namespace std

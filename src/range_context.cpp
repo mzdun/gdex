@@ -115,7 +115,6 @@ namespace gd
 			, ptr(0)
 		{
 			vtable();
-			seek(this, 0);
 		}
 	};
 }
@@ -125,5 +124,15 @@ BGDEX_DECLARE(gdIOCtx *) gdNewRangeCtx(gdIOCtx * inner, size_t offset, size_t si
 	if (!inner)
 		return nullptr;
 
-	return new (std::nothrow) gd::RangeContext(inner, offset, size);
+	gd::IOHandle ret{ new (std::nothrow) gd::RangeContext(inner, offset, size) };
+	if (!ret)
+		return nullptr;
+
+	if (!ret.seek(0))
+	{
+		ret.gd_free();
+		return nullptr;
+	}
+
+	return ret.get();
 }
