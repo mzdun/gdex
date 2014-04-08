@@ -274,14 +274,14 @@ namespace gd { namespace ico {
 	{
 		auto range = io.createRange(entry.offset, entry.size);
 		if (!range)
-			return false;
+			return nullptr;
 
 		auto image = gdImageCreateFromPngCtx(range.get());
 		if (image)
 			return image;
 
 		if (!range.seek(0))
-			return false;
+			return nullptr;
 		return bmp::readDeviceIndependentBitmap(range);
 	}
 }}
