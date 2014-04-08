@@ -23,7 +23,7 @@
  */
 
 #include "gdex.hpp"
-#include "gdex_io.hpp"
+
 namespace le
 {
 	template <typename T>
@@ -75,6 +75,10 @@ namespace gd { namespace bmp {
 		};
 	}
 
+	gdImagePtr readDeviceIndependentBitmap(const IOHandle& io)
+	{
+		return nullptr;
+	}
 }}
 
 namespace gd { namespace ico {
@@ -268,7 +272,17 @@ namespace gd { namespace ico {
 
 	gdImagePtr loadIconEntry(const IOHandle& io, const IconEntry& entry)
 	{
-		return nullptr;
+		auto range = io.createRange(entry.offset, entry.size);
+		if (!range)
+			return false;
+
+		auto image = gdImageCreateFromPngCtx(range.get());
+		if (image)
+			return image;
+
+		if (!range.seek(0))
+			return false;
+		return bmp::readDeviceIndependentBitmap(range);
 	}
 }}
 
