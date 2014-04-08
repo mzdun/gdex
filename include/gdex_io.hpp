@@ -28,6 +28,8 @@
 #include <gd.h>
 #include <algorithm> // std::swap
 
+BGDEX_DECLARE(gdIOCtx *) gdNewRangeCtx(gdIOCtx * inner, size_t offset, size_t size);
+
 namespace gd
 {
 
@@ -59,7 +61,10 @@ namespace gd
 		gdIOCtxPtr get() const { return ctx; }
 
 		// GD2
+		int getC() const { return ctx->getC(ctx); }
+		void putC(int c) const { ctx->putC(ctx, c); }
 		int getBuf(void * ptr, int size) const { return ctx->getBuf(ctx, ptr, size); }
+		int putBuf(const void * ptr, int size) const { return ctx->putBuf(ctx, ptr, size); }
 		long tell() const { return ctx->tell(ctx); }
 		bool seek(const int offset) const { return ctx->seek(ctx, offset) != 0; }
 		void gd_free() const { ctx->gd_free(ctx); }
@@ -68,7 +73,7 @@ namespace gd
 		bool read(T& obj) const { return getBuf(&obj, sizeof(obj)) == sizeof(obj); }
 	};
 
-	class IOCtx: IOHandle
+	class IOCtx: public IOHandle
 	{
 	public:
 		explicit IOCtx(gdIOCtxPtr ctx) : IOHandle(ctx) {}
@@ -125,12 +130,17 @@ namespace gd
 		{
 			return IOCtx{ gdNewDynamicCtxEx(size, data, 0) };
 		}
+
+		static IOCtx createFromRange(const IOHandle& io, size_t offset, size_t size)
+		{
+			return IOCtx{ gdNewRangeCtx(io.get(), offset, size) };
+		}
 	};
 };
 
 namespace std
 {
-	void swap(gd::IOCtx& left, gd::IOCtx& right)
+	inline void swap(gd::IOCtx& left, gd::IOCtx& right)
 	{
 		left.swap(right);
 	}

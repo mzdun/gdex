@@ -32,5 +32,8 @@
     <ClCompile Include="..\src\ico\gd_ico.cpp">
       <Filter>Source Files\ico</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\range_context.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

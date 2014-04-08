@@ -17,6 +17,7 @@
   <ItemGroup>
     <ClCompile Include="..\src\ico\gd_ico.cpp" />
     <ClCompile Include="..\src\load_image.cpp" />
+    <ClCompile Include="..\src\range_context.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{C6014D10-C635-44A7-ADFC-0971DC976197}</ProjectGuid>

@@ -47,6 +47,8 @@
 
 #define BGDEX_DECLARE(rt) extern "C" BGDEX_DECLARE_CC(rt)
 
+#include <gdex_io.hpp>
+
 namespace gd
 {
 	class GdImage
