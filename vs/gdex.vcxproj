@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{C6014D10-C635-44A7-ADFC-0971DC976197}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>gdex</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <PlatformToolset>CTP_Nov2013</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration))'=='Debug'" Label="Configuration">
+    <UseDebugLibraries>true</UseDebugLibraries>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)'=='Release'" Label="Configuration">
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(SolutionDir)\$(Platform).props" Condition="exists('$(SolutionDir)\$(Platform).props')" />
+    <Import Project="$(SolutionDir)\$(Configuration).props" Condition="exists('$(SolutionDir)\$(Configuration).props')" />
+    <Import Project="$(SolutionDir)\$(Platform).$(Configuration).props" Condition="exists('$(SolutionDir)\$(Platform).$(Configuration).props')" />
+    <Import Project="$(SolutionDir)\solution.props" Condition="exists('$(SolutionDir)\solution.props')" />
+    <Import Project="$(SolutionDir)\solution.$(Platform).props" Condition="exists('$(SolutionDir)\solution.$(Platform).props')" />
+    <Import Project="$(SolutionDir)\solution.$(Configuration).props" Condition="exists('$(SolutionDir)\solution.$(Configuration).props')" />
+    <Import Project="$(SolutionDir)\solution.$(Platform).$(Configuration).props" Condition="exists('$(SolutionDir)\solution.$(Platform).$(Configuration).props')" />
+    <Import Project="$(SolutionDir)\gdex.props" Condition="exists('$(SolutionDir)\gdex.props')" />
+    <Import Project="$(SolutionDir)\gdex.$(Platform).props" Condition="exists('$(SolutionDir)\gdex.$(Platform).props')" />
+    <Import Project="$(SolutionDir)\gdex.$(Configuration).props" Condition="exists('$(SolutionDir)\gdex.$(Configuration).props')" />
+    <Import Project="$(SolutionDir)\gdex.$(Platform).$(Configuration).props" Condition="exists('$(SolutionDir)\gdex.$(Platform).$(Configuration).props')" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup />
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
